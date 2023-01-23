@@ -1,0 +1,50 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: <REPLACE>
+  namespace: itdev
+  labels:
+    deployment: <REPLACE>
+    type: external
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: <REPLACE>
+  template:
+    metadata:
+      labels:
+        deployment: <REPLACE>
+        type: external
+    spec:
+      containers:
+        - name: 
+            aws.registry.trendmicro.com/<REPLACE>/<REPLACE>:production-$BUILD_NUMBER
+          image: <REPLACE>:$BUILD_NUMBER
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 256Mi
+            requests:
+              cpu: 300m
+              memory: 128Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        env: prd
+      securityContext: {}
+      imagePullSecrets:
+        - name: <REPLACE>
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1

@@ -1,0 +1,51 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: <REPLACE>
+  namespace: itdev-stg
+  labels:
+    deployment: <REPLACE>
+    type: external
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      deployment: <REPLACE>
+  template:
+    metadata:
+      labels:
+        deployment: <REPLACE>
+        type: external
+    spec:
+      containers:
+        - name: <REPLACE>
+          image: >-
+            aws.registry.trendmicro.com/<REPLACE>/<REPLACE>:staging-$BUILD_NUMBER
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 125m
+              memory: 128Mi
+            requests:
+              cpu: 65m
+              memory: 64Mi
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      nodeSelector:
+        env: stg
+      securityContext: {}
+      imagePullSecrets:
+        - name: <REPLACE>
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1

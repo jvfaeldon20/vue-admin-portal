@@ -1,0 +1,21 @@
+#login {
+    margin-top: 100px;
+}
+
+#inspire_login {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: url('../login-bg.png') no-repeat center center;
+    background-size: 100%;
+    background-attachment: fixed;
+    display: center;
+    /* background-color: #023338; */
+    /* transform: scale(1.1); */
+}
+
+#login-error {
+    margin-bottom: 10px
+}

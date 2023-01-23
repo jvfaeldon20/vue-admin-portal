@@ -1,0 +1,44 @@
+{
+    "src_folders": [
+        "tests/e2e/specs"
+    ],
+    "output_folder": "./reports",
+    "test_settings": {
+        "default": {
+            "launch_url": "https://gisauto-admin-stg.gisauto.trendmicro.com",
+            "globals": {
+                "waitForConditionTimeout": 5000,
+                "waitForLoginTimeout": 3000,
+                "username": "trendus\\su-itdev_robot_test",
+                "password": "${AUTOTEST_ACCOUNT_PSW}",
+                "passwordinvalid": "POibr1uc4r@T",
+                "automationsRoute": "https://gisauto-admin-stg.gisauto.trendmicro.com/automation-list",
+                "projectName": "E2E Test Automation",
+                "projectKey": "E2E01",
+                "projectDescription": "E2E test description",
+                "projectDescriptionUpdate": "E2E test description update",
+                "searchKeywordAutomation": "e2e test",
+                "accessGroupValue": "E2E Test Access Group",
+                "automationLogsFilterAccessGroup": "Network Access Group",
+                "systemTriggerFilterProjectName": "Transit Gateway ACL - Request",
+                "systemTriggerFilterReferenceId": "acl_case_checker_2022-03-17 07:15:22",
+                "manualTriggerFilterRequestor": "su-itdev_robot_test",
+                "manualTriggerFilterTriggerReason": "test e2e autotesting",
+                "dashboardFilterUsername": "su-itdev_robot_test",
+                "dashboardServiceUsageFilterMessageKeyword": "helpdesk",
+                "dashboardServiceUsageFilterMessageResult": "WEBSERVICE || SERVICE: IT Helpdesk Ticket Submission Form",
+                "dashboardServiceUsageFilterCategory": "log search",
+                "desiredCapabilities": {
+                    "browserName": "chrome",
+                    "javascriptEnabled": true,
+                    "chromeOptions": {
+                        "args": [
+                            "headless",
+                            "no-sandbox"
+                        ] 
+                    }
+                }
+            }
+        }
+    }
+}
